@@ -1,0 +1,19 @@
+<html>
+	<body>
+	
+		{% if isLoggedIn %}
+		<a href="{{ url_for('gdisconnect') }}">Log Out</a>
+		{% else %}
+		<a href="{{ url_for('showLogin') }}">Log In</a>
+		{% endif %}
+		
+		<h1>{{ item.name }}</h1>
+		<p>Description: {{item.description}}</p>
+		
+		{% if isLoggedIn %}
+		<a href="{{ url_for('editItem', category_id=category_id , item_id=item.id) }}">edit</a>
+		</br>
+		<a href="{{ url_for('deleteItem', category_id=category_id , item_id=item.id) }}">delete</a>
+		{% endif %}
+	</body>
+</html>

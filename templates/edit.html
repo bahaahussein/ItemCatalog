@@ -1,0 +1,28 @@
+<html>
+	<body>
+		{% if isLoggedIn %}
+		<a href="{{ url_for('gdisconnect') }}">Log Out</a>
+		{% else %}
+		<a href="{{ url_for('showLogin') }}">Log In</a>
+		{% endif %}
+		<h1>Edit item</h1>
+		<form action='{{url_for('editItem', category_id=category_id , item_id=item.id)}}' method = 'POST'>
+			Title</br>
+			<input type='text' size='30' name='name' placeholder='{{ item.name }}'>
+			</br></br>
+			Description</br>
+			<input type='text' name='description' placeholder='{{ item.description }}'>
+			</br></br>
+			Category</br>
+			{% for category in categories %}
+			{% if category.id == category_id %}
+			<input type="radio" name="category" value="{{ category.id }}" checked>{{ category.name }}<br>
+			{% else %}
+			<input type="radio" name="category" value="{{ category.id }}">{{ category.name }}<br>
+			{% endif %}
+			{% endfor %}
+			</br>
+			<input type='submit' value='Submit'>
+		</form>
+	</body>
+</html>
